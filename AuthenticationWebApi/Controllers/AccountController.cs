@@ -1,27 +1,25 @@
 ﻿using JwtAuthenticationManager;
 using JwtAuthenticationManager.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AuthenticationWebApi.Controllers
+namespace AuthenticationWebApi.Controllers;
+
+[Route("[controller]")]
+[ApiController]
+public class AccountController (JwtTokenHandler jwtTokenHandler) : ControllerBase
 {
-    [Route("[controller]")]
-    [ApiController]
-    public class AccountController : ControllerBase
+    private readonly JwtTokenHandler _jwtTokenHandler = jwtTokenHandler;
+
+    [HttpPost("authenticate")]
+    public ActionResult<AuthenticationResponseModel?> Authenticate ([FromBody] AuthenticationRequestModel request)
     {
-        private readonly JwtTokenHandler _jwtTokenHandler;
+        var authenticationResponse = _jwtTokenHandler.GenerateJwtToken(request);
 
-        public AccountController(JwtTokenHandler jwtTokenHandler)
+        if (authenticationResponse == null)
         {
-            _jwtTokenHandler = jwtTokenHandler;
+            return Unauthorized();
         }
 
-        [HttpPost("authenticate")]
-        public ActionResult<AuthenticationResponseModel?> Authenticate([FromBody] AuthenticationRequestModel request)
-        {
-            var authenticationResponse = _jwtTokenHandler.GenerateJwtToken(request);
-            if (authenticationResponse == null) return Unauthorized();
-            return authenticationResponse;
-        }
+        return authenticationResponse;
     }
 }

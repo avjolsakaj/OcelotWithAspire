@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace JwtAuthenticationManager.Models;
 
-namespace JwtAuthenticationManager.Models
+public class AuthenticationRequestModel
 {
-    public class AuthenticationRequestModel
-    {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-    }
+    public required string UserName { get; set; }
+
+    public required string Password { get; set; }
 }

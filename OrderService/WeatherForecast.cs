@@ -1,14 +1,14 @@
-namespace OrderService
+namespace OrderService;
+
+public class WeatherForecast
 {
-    public class WeatherForecast
-    {
-        public string Api { get; } = "ORDER SERVICE";
-        public DateOnly Date { get; set; }
+    public string Api { get; } = "ORDER SERVICE";
 
-        public int TemperatureC { get; set; }
+    public DateOnly Date { get; set; }
 
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public int TemperatureC { get; set; }
 
-        public string? Summary { get; set; }
-    }
+    public int TemperatureF => 32 + (int) (TemperatureC / 0.5556);
+
+    public string? Summary { get; set; }
 }
