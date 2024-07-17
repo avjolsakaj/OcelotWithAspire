@@ -11,8 +11,8 @@ services:
     build:
       context: .
       dockerfile: OrderService/Dockerfile
-    # ports:
-    #   - 18003:80
+    ports:
+      - 18003:8080
     networks:
       - backend
 
@@ -22,8 +22,8 @@ services:
     build:
       context: .
       dockerfile: CustomerService/Dockerfile
-    # ports:
-    #   - 18002:80
+    ports:
+      - 18002:8080
     networks:
       - backend
 
@@ -34,7 +34,7 @@ services:
       context: .
       dockerfile: AuthenticationWebApi/Dockerfile
     ports:
-      - 18001:80
+      - 18001:8080
     networks:
       - backend
 
@@ -47,4 +47,4 @@ services:
     networks:
       - backend
     ports:
-      - 8001:80 
+      - 8001:8080
