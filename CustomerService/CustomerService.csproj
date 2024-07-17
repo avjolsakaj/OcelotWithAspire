@@ -8,5 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\JwtAuthenticationManager\JwtAuthenticationManager.csproj" />
+    <ProjectReference Include="..\OceloAspire.ServiceDefaults\OceloAspire.ServiceDefaults.csproj" />
   </ItemGroup>
 </Project>

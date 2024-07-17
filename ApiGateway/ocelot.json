@@ -6,8 +6,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "customerservice",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 5223
         }
       ],
       "DownstreamPathTemplate": "/customers", //internal path
@@ -25,8 +25,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "customerservice",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 5223
         }
       ],
       "DownstreamPathTemplate": "/customers/getSingle" //internal path
@@ -37,8 +37,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "orderservice",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 5032
         }
       ],
       "DownstreamPathTemplate": "/orders",
@@ -49,9 +49,18 @@
       //"RouteClaimsRequirement": {
       //  "Role": "Admin"
       //}
+    },
+    {
+      "UpstreamPathTemplate": "/api/account/authenticate",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5224
+        }
+      ],
+      "DownstreamPathTemplate": "/account/authenticate"
     }
-  ],
-  "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:8001"
-  }
+  ]
 }
