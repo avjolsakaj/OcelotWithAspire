@@ -1,0 +1,50 @@
+version: '3.4'
+
+networks:
+  backend:
+
+
+services:
+  orderservice:
+    container_name: order-api
+    image: ${DOCKER_REGISTRY-}orderservice
+    build:
+      context: .
+      dockerfile: OrderService/Dockerfile
+    # ports:
+    #   - 18003:80
+    networks:
+      - backend
+
+  customerservice:
+    container_name: customer-api
+    image: ${DOCKER_REGISTRY-}customerservice
+    build:
+      context: .
+      dockerfile: CustomerService/Dockerfile
+    # ports:
+    #   - 18002:80
+    networks:
+      - backend
+
+  authenticationwebapi:
+    container_name: authentication-api
+    image: ${DOCKER_REGISTRY-}authenticationwebapi
+    build:
+      context: .
+      dockerfile: AuthenticationWebApi/Dockerfile
+    ports:
+      - 18001:80
+    networks:
+      - backend
+
+  apigateway:
+    container_name: apigateway
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    networks:
+      - backend
+    ports:
+      - 8001:80 

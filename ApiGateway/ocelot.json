@@ -1,0 +1,57 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/customers", //public path
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "customerservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/customers", //internal path
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "Period": "60s",
+        "EnableRateLimiting": true,
+        "Limit": 2,
+        "PeriodTimespan": 60
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/getSingle", //public path
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "customerservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/customers/getSingle" //internal path
+    },
+    {
+      "UpstreamPathTemplate": "/api/orders",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "orderservice",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/orders",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      //"RouteClaimsRequirement": {
+      //  "Role": "Admin"
+      //}
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:8001"
+  }
+}
